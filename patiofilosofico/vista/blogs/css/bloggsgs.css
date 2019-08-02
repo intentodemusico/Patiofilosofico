@@ -1,0 +1,503 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.row{
+    width: 100%;
+    height: 100px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.row .uno{
+    position: relative;
+    top: -45px;
+    width: 200px;
+}
+
+.row .dos{
+    position: absolute;
+    width: 250px;
+    height: 90px;
+    top: -10px;
+}
+
+.row h1{
+    position: absolute;
+    font-family: 'arial narrow';
+    font-size: 250%;
+    text-align: center;
+    color: rgb(0,110,192);
+    width: 100%;
+}
+
+.salir{
+    position: relative;
+    left: 65px;
+}
+
+.boton li {
+    list-style-type: none;
+    margin: 0px 0px;
+}
+
+.ingreso {
+    position: absolute;
+    right: 22px;
+    top: 40px;
+    width: 350px;
+    z-index: 99999;
+}
+
+.ingreso li {
+    position: relative;
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 8px;
+    border-radius: 10PX;
+}
+
+.ingreso li a {
+    text-decoration: none;
+    font-family: 'arial narrow';
+    color: white;
+    font-size: 140%;
+}
+
+.ingreso li a:hover {
+    color: white;
+    font-size: 23px;
+    background: #006ec0;
+    font-family: 'arial narrow';
+}
+
+.ingreso li:hover{
+    background: #006ec0;
+}
+
+.navegacion2 .menu2{
+    position: absolute;
+    display: flex;
+    left: 79%;
+    top: 15px;
+}
+
+.navegacion2 li img{
+    width: 50px;
+    height: 30px;
+}
+
+.submenu2 {
+    position: absolute;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 2s;
+    width: 85%; 
+    left: 40%;     
+}
+
+.submenu2 li{
+    background: rgba(0, 110, 192, 0.6);
+    width: 100%;
+}
+
+.submenu2 li a{
+    display: block;
+    padding: 7px 15px;
+    color: white;
+    font-family: 'arial narrow';
+    font-size: 110%;
+    text-decoration: none;
+}
+
+.menu2 li:hover .submenu2{
+   visibility: visible;
+   opacity: 1;
+   right: 80px;
+}
+
+.submenu2 li a:hover{
+    position: relative;
+    font-family: 'arial narrow';
+    color: lightseagreen;
+    font-weight: bold;
+}
+
+.fontello{
+    position: relative;
+    top: -30px;
+    background-image: url('../imagenes/mod2.png');
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 300px;
+}
+
+.fontello .titulos{
+    position: relative;
+    top: 30%;
+    text-align: center;
+}
+
+.fontello .titulos h2{
+    color: white;
+    font-family: 'arial narrow';
+    font-size: 350%;
+}
+
+.fontello .titulos p{
+    position: relative;
+    color: white;
+    font-family: 'arial narrow';
+    font-size: 170%;
+    top: -20px;
+}
+
+.fontellos{
+    position: relative;
+    top: -30px;
+    background-image: url('../imagenes/mod2.png');
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 300px;
+}
+
+.titulo {
+    position: absolute;
+    top: 390px;
+    left: 10%;
+    font-weight: bold;
+    width: 80%;
+    font-size: 200%;
+    font-family: 'arial narrow';
+    color: rgb(0, 110, 192);
+}
+
+.linea {
+    position: relative;
+    top: 0px;
+    width: 90%;
+    left: 5%;
+    border: solid 1px rgb(0, 110, 192);  
+}
+
+.lineas{
+    position: relative;
+    top: 5px;
+    width: 80%;
+    left: 10%;
+    border: solid 1px rgb(0, 110, 192);  
+}
+
+.row{      
+    position: relative;
+    left: 10%;
+    width: 80%;
+    padding: 5px;
+    margin: 10px 0px;
+}
+
+.row img{
+    padding: 0px 10px;
+    width: 300px;
+}
+
+.cat{
+    position: relative;
+    top: -10px;
+    font-family: 'arial narrow';
+    font-size: 120%;
+    color: black;
+    width: 30%;
+}
+
+.categ{
+    position: relative;
+    font-family: 'arial narrow';
+    font-size: 120%;
+    color: rgba(0,110,192,0.5);
+    width: 30%;
+}
+
+.sub_categorias{
+    background: rgb(0,110,192);
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: 'arial narrow';
+    border-radius: 5px;
+}
+
+.sub_categorias img{
+    width: 45px;
+}
+
+.sub_categorias h5{
+    text-align: right;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.sub_categorias a{
+    position: relative;
+    color: white;
+    font-size: 120%;
+    padding: 0px; 
+}
+
+.sub_categorias a:hover{
+    text-decoration: none;
+    color: lightskyblue;
+}
+
+.lineal{
+    position: relative;
+    color: white;
+    margin: 5px;
+    border: 0.5px solid white;
+}
+
+.navegacion{
+    position:absolute;
+    top: -35px;
+    width: 88%;
+    padding: 6px 0px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: rgb(193, 194, 196) 2px 2px 2px 2px;
+}
+
+.navegacion ul{
+    position: relative;
+    list-style: none;
+    width: 100%;
+    display: flex;
+    top: 5px;
+    text-align: center;
+}
+
+.menus > li{
+    position: relative;
+    width: 180px;
+    left: 7%;
+    text-align: center;
+    margin: 0px 10px;
+    padding: 0px 0px;
+    border-radius: 5px;
+}
+
+.menus > li > a{
+    padding: 0px 0px;
+    text-decoration: none;
+    font-family: 'arial narrow';
+    font-size: 110%;
+}
+
+.menus li a:hover{
+    font-family: 'arial narrow';
+    font-weight: bold;
+}
+
+.menus li:hover{
+   visibility: visible;
+   opacity: 1;
+   border-radius: 10px;
+   color: white;
+}
+
+li .categoria:hover{
+    color: white;
+}
+
+.menus li img{
+    width: 40px;
+}
+
+form .cat{
+    width: 100%;
+    border-radius: 5px;
+    height: 35px;
+}
+
+form .cate{
+    font-family: 'arial narrow';
+    font-size: 130%;
+    color: rgb(0,110,192);
+}
+
+.main .primo{
+    
+    font-family: 'arial narrow';
+    font-size: 170%;
+}
+
+.main .contenido{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    text-align: justify;
+    font-family: 'arial narrow';
+    font-size: 110%;
+    overflow: hidden;
+    left: 12%;
+}
+
+.main a img{
+    position: relative;
+    width: 50px;
+}
+
+.opciones .coment img{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 0px 0px;
+    margin: 0px 0px 0px 10px;
+}
+
+.opciones .coment{
+    position: relative;
+    left: 60%;
+}
+
+.opciones{
+    position: relative;
+    display: flex;
+    margin: -10px;
+    width: 75%;
+    left: 10%;
+}
+
+.opciones .gusta{
+    position: relative;
+    left: 60%;
+}
+
+.opciones .gusta:hover{
+    text-decoration: none;
+}
+
+.opciones .leer{
+    position: relative;
+    margin: 5px 10px;
+    padding: 0px 10px;
+    border-radius: 5px;
+    font-family: 'arial narrow';
+    background: rgb(0,110,192);
+    color: white;
+}
+
+.opciones .leer:hover{
+    font-weight: bold;
+    font-family: 'arial narrow';
+    text-decoration: none;
+}
+
+.paginacion a{
+    position: relative;
+    margin: 2px 2px 10px 2px;
+    padding: 3px;
+    left: 55%;
+    color: white;
+    background: rgb(0,110,192);
+    font-family: 'arial narrow';
+    font-size: 120%;
+    border-radius: 5px;
+}
+
+.paginacion a:hover{
+    text-decoration: none;
+    background: white;
+    color: rgb(0,110,192);
+}
+
+.info p{
+    font-family: 'arial narrow';
+    font-size: 120%;
+    text-align: justify;
+}
+
+.info a{
+    position: relative;
+    margin: 0px 10px;
+    padding: 5px 10px;
+    color: white;
+    background: rgb(0,110,192);
+    border-radius: 5px;
+    left: 15%;
+}
+
+.info a:hover{
+    text-decoration: none;
+    color: white;
+    background: green;
+}
+
+.row .informacionpersonal{
+    width: 100%;
+    height: auto;
+    border: solid black;
+}
+
+.main .botones img{
+    position: relative;
+    width: 45px;
+    height: 25px;
+    left: 60%;
+}
+
+.main input{
+    position: relative;
+    left: 10%;
+}
+.row{
+    height: auto;
+}
+
+.footer{
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+}
+
+.footer1{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    background: darkgrey;
+}
+
+.footer1 a img{
+    position: relative;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.pie {
+    position: relative;
+    background: #11408D;
+    width: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+}
+
+.pie p {
+    position: relative;
+    left: 0%;
+    margin: 10px;
+    text-align: center;
+}
+
+.pie a {
+    text-decoration: none;
+    color: white;
+}
+
+.pie a:hover{
+    text-decoration: none;
+}

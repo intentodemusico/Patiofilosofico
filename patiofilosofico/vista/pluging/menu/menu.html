@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+      
+    </head>
+<body>
+		<div class="container">
+			
+			<section class="section section--menu" id="Viola">
+				<h2 class="section__title">Viola</h2>
+				<span class="link-copy"></span>
+				<nav class="menu menu--viola">
+					<ul class="menu__list">
+						<li class="menu__item menu__item--current">
+                                                    <a href="#" class="menu__link">
+                                                        Home</a> 
+                                                    <ul>
+                                                        <li>submenu 1</li>
+                                                        <li>submenu 2</li>
+                                                    </ul></li>
+						<li class="menu__item"><a href="#" class="menu__link">Articles</a></li>
+						<li class="menu__item"><a href="#" class="menu__link">Reviews</a></li>
+						<li class="menu__item"><a href="#" class="menu__link">Shop</a></li>
+						<li class="menu__item"><a href="#" class="menu__link">Contact</a></li>
+					</ul>
+				</nav>
+			</section>
+			
+		</div>
+		<!-- /container -->
+		<script src="js/classie.js"></script>
+		<script src="js/clipboard.min.js"></script>
+		<script>
+		(function() {
+			[].slice.call(document.querySelectorAll('.menu')).forEach(function(menu) {
+				var menuItems = menu.querySelectorAll('.menu__link'),
+					setCurrent = function(ev) {
+						ev.preventDefault();
+
+						var item = ev.target.parentNode; // li
+
+						// return if already current
+						if (classie.has(item, 'menu__item--current')) {
+							return false;
+						}
+						// remove current
+						classie.remove(menu.querySelector('.menu__item--current'), 'menu__item--current');
+						// set current
+						classie.add(item, 'menu__item--current');
+					};
+
+				[].slice.call(menuItems).forEach(function(el) {
+					el.addEventListener('click', setCurrent);
+				});
+			});
+
+			[].slice.call(document.querySelectorAll('.link-copy')).forEach(function(link) {
+				link.setAttribute('data-clipboard-text', location.protocol + '//' + location.host + location.pathname + '#' + link.parentNode.id);
+				new Clipboard(link);
+				link.addEventListener('click', function() {
+					classie.add(link, 'link-copy--animate');
+					setTimeout(function() {
+						classie.remove(link, 'link-copy--animate');
+					}, 300);
+				});
+			});
+		})(window);
+		</script>
+	</body>
+</html>
