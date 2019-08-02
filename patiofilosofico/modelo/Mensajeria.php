@@ -398,6 +398,21 @@ FROM `usuario` WHERE idusuario in
         return $resp;
     }
 
+    function salirseGrupo($idUser, $idgrupo) {
+        $conn = conBD::conectar();
+        $sql = "DELETE FROM `participante_sala` WHERE `idusuario` = '" . $idUser . "' AND `idsala_chat` = '" . $idgrupo . "';";
+//        echo $sql;
+//        $sql = "UPDATE `participante_sala`"
+//                . "SET "
+//                . "`fecha` = '" . $hoy . "',"
+//                . "`estado` = 'ACTIVO'"
+//                . "WHERE `idusuario` = '" . $idUser . "' AND `idsala_chat` = '" . $idgrupo . "';";
+//        echo $sql;
+        $resp = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        return $resp;
+    }
+
     function actualizarEstadoMensaje($idMensaje, $estado) {
         $sql = "UPDATE `mensaje` SET `estado` = '" . $estado . "'  WHERE `idmensaje` = '" . $idMensaje . "'";
         $conn = conBD::conectar();

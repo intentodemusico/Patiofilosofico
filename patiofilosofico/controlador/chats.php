@@ -362,6 +362,34 @@ if (isset($p['oper'])) {
 //            }break;
     }
 
+    if ($p['oper'] == 'salirseGrupo' ) {
+        $idgrupo= $p["idgrupo"];
+                $mens = new Mensajeria();
+                $MISgrupos = $mens->salirseGrupo($user->getId(), $idgrupo);
+                if ($MISgrupos) {
+                    ?>
+                    <script>
+                        var noty = new NotificationFx({
+                            message: '<p>Has salido del grupo. </p>',
+                            layout: 'growl',
+                            effect: 'slide',
+                            type: 'notice' // notice, warning or error
+                        });
+                        noty.show();
+
+                    </script>
+                    <?php
+                
+
+    } else {
+                        ?>
+
+                        <?php
+                    }
+                }
+//            }break;
+    }
+
     if ($p['oper'] == 'cargar conversacion Usuario' ) {
 //            echo $p['oper'];
 
@@ -628,7 +656,7 @@ if (isset($p['oper'])) {
 
                 <?php
 //            }break;
-    }
+    
 } else {
     echo "No se encontro la varible 'oper'";
 }

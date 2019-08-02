@@ -69,13 +69,13 @@ if (isset($s['usuario']))
 </header>   
 </div>
 
- <?php
+<?php
     $connect = conBD::conectar();
     
     $querys = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario = ".$user->getId());
     while ($rowt= mysqli_fetch_array($querys))
     {
-    ?>
+?>
 
 <div class="fontello">   
     <section class="titulos">

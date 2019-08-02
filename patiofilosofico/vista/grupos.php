@@ -65,19 +65,24 @@ if (isset($_SESSION["usuario"])) {
                         }
                         while ($fila = mysqli_fetch_array($MISgrupos, MYSQLI_ASSOC)) {
                             ?>
-                        <div class="cont-group mb-3 p-3" id="comunidad<?php echo $fila["idsala_chat"]; ?>">
-                                 <button type="button" class="close" aria-label="Close"  title="Eliminar Comunidad" onclick="eliminarComunidad(this,'<?php echo $fila["idsala_chat"]; ?>');"> 
+                        <div class="cont-group mb-3 p-3" id="comunidad<?php echo $fila["idsala_chat"]; ?>">  <!-- Acá se debe corregir para que solo el dueño de la comunidad pueda eliminarla-->
+                                <button type="button" class="close" aria-label="Close"  title="Eliminar Comunidad" onclick="eliminarComunidad(this,'<?php echo $fila["idsala_chat"]; ?>');">  
                                                 <span aria-hidden="true">&times;</span>
-                                 </button>
-                                <a href="#1" onclick="envioFormularioDataForm('', 'comunidad_chat.php?idSalaChat=<?php echo $fila["idsala_chat"]; ?>', 'contenedorPrincipal', true);"><span class="text-uppercase"><?php echo $fila["titulo"]; ?></span></a><br>
+                                </button>
+                                <a href="#1" onclick="envioFormularioDataForm('', 'comunidad_chat.php?idSalaChat=<?php echo $fila["idsala_chat"]; ?>', 'contenedorPrincipal', true);" <span class="text-uppercase"><?php echo $fila["titulo"]; ?></span></a><br>
                                 <span class="text-lowercase"><?php echo $fila["descripcion"]; ?></span><br>
                                 <span class="fecha"><?php echo $fila["fecha"]; ?></span><br>
-                                <!--<input type="button" value="Unirse" class="btn btn-sm btn-defauld">-->
-                            </div>
-                            <?php
-                        }
-                        ?>
-                        
+                                <!-- salir del grupo-->
+                                <form action="../controlador/chats.php" method="post" 
+                                    onsubmit="envioFormulario(this, 'misgrupos', true);return false;">
+                                    <input type="hidden" name="oper" value="salirseGrupo">
+                                    <input type="hidden" name="idgrupo" value="<?php echo $fila["idsala_chat"]; ?>">
+                                    <input type="submit" value="Salirse" class="btn btn-sm btn-defauld"><!-- Salirse   -->
+                                </form>
+                        </div>
+                        <?php
+                            }
+                        ?>                        
                 <h5 class="text-info ">Grupos disponibles</h5>
                 <div class="contenido">
                     <?php
@@ -102,7 +107,6 @@ if (isset($_SESSION["usuario"])) {
                                     <input type="hidden" name="oper" value="unirseGrupo">
                                     <input type="hidden" name="idgrupo" value="<?php echo $fila["idsala_chat"]; ?>">
                                     <input type="submit" value="Unirse" class="btn btn-sm btn-defauld">
-                                    <input type="submit" value="Salirse" class="btn btn-sm btn-defauld">   <!-- Salirse   -->
                                 </form>
                                 <?php
                             }
@@ -226,6 +230,3 @@ function eliminarComunidad(btn, idComunidad){
 }
 //            ejecutarFuncion('../controlador/chats.php','cargarMisGrupos','misgrupos',true);
 </script>
-
-<!--    </body>
-</html>-->
