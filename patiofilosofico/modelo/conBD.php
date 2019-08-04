@@ -8,8 +8,8 @@ class conBD
     static public function conectar()
     {
         $host = "localhost";
-        $dbuser = "laravel";
-        $dbpwd = "laravel";
+        $dbuser = "root";
+        $dbpwd = "buf123";
         $db = "patiofilosofico";
         $connect = mysqli_connect($host, $dbuser, $dbpwd, $db);
         return $connect;
