@@ -1,9 +1,7 @@
 <?php 
-	include "../../controlador/conBD.php";
-//        include 'cn.php';
 	include "funciones.php";
-        
-        include '../../modelo/Usuario.php';
+    include '../../controlador/conBD.php';
+include '../../modelo/Usuario.php';
         
         session_start();
 $p = $_POST;
@@ -12,8 +10,9 @@ $user = new Usuario();
 if (isset($s['usuario']))
     $user = unserialize($s['usuario']);
         
-        $connect = conBD::conectar();
- ?>
+
+    $err = isset($_GET['error']) ? $_GET['error']: null;
+    ?>
 
  <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +61,15 @@ if (isset($s['usuario']))
 </style>
 
 <body>
- 
+<?php 
+$idNoticia= $_GET["id"];
+$sentenciaUserBlog=mysqli_query($connect,"SELECT idusuario FROM blog WHERE id=".$idNoticia);
+$connect = conBD::conectar();
+
+$rowUserBlog= mysqli_fetch_array($sentenciaUserBlog);
+$idUserBlog = $rowUserBlog["idusuario"];
+ $sentencia = "SELECT * FROM usuario WHERE idusuario = ".$idUserBlog;//$user->getId();
+?>
 <div class="roww">
    
     <h1>BLOG EL PATIO FILOSÓFICO</h1>  
@@ -74,9 +81,9 @@ if (isset($s['usuario']))
 <header>
     
      <?php
+         if ($user->getId()== $user->getId()) {
     $connect = conBD::conectar();
-    
-    $querys = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario = ".$user->getId());
+    $querys = mysqli_query($connect,$sentencia );
     while ($rowt= mysqli_fetch_array($querys))
     {
     ?>
@@ -89,6 +96,7 @@ if (isset($s['usuario']))
 
     <?php
     }
+}
     ?>
 </header>
 
@@ -98,17 +106,18 @@ if (isset($s['usuario']))
         {
     ?>
 
-            <div id="container">
-                <nav class="navegacion">
-                    <ul class="menus">
-                        <li> <a href="../index.php"><img src="Imagenes/ini.png">Inicio</a></li>
-                        <li> <a href="blog.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/lb.png">Blog</a></li>
-                        <li> <a href="agregarnoticia.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/nuv.png">Nueva Entrada</a></li>
-                        <li> <a href="categorias.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/cat.png">Agregar Categoría</a></li>
-
-                    </ul>
-                </nav>
-            </div>
+<div id="container">
+    <nav class="navegacion">
+        <ul class="menus">
+            <li> <a href="../index.php"><img src="Imagenes/ini.png">Inicio</a></li>
+            <li> <a href="blog.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/lb.png">Blog</a></li>
+            <?php if ($user->getId()== $idUserBlog) { //el logeado es el dueño del post -> puede gestionar el blog ?> 
+                <li> <a href="agregarnoticia.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/nuv.png">Nueva Entrada</a></li>
+                <li> <a href="categorias.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/cat.png">Agregar Categoría</a></li>
+            <?php }?>
+        </ul>
+    </nav>
+</div>
 
          <?php
     }
@@ -144,7 +153,7 @@ if (isset($s['usuario']))
                         <br/>
                         
                         <?php
-                        $queryt = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario= ".$user->getId());
+                        $queryt = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario= ".$idUserBlog);
                             while($rowe= mysqli_fetch_array($queryt))
                             {
                         ?>
@@ -203,3 +212,4 @@ if (isset($s['usuario']))
 <?php
             require 'footer.php';
 ?>
+<?php mysqli_close($connect); ?>

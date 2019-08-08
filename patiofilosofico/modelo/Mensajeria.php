@@ -286,7 +286,7 @@ FROM `usuario` WHERE idusuario in
 (SELECT `participante_sala`.`idusuario` FROM `participante_sala` WHERE idsala_chat = '".$idsalachat."' and estado = 'ACTIVO');
 ";
         $conn = conBD::conectar();
-       return mysqli_query($conn, $sql);
+    return mysqli_query($conn, $sql);
 
     }
 

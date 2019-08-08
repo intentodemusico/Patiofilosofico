@@ -248,7 +248,20 @@ $datosSala = mysqli_fetch_array($datosSala, MYSQLI_ASSOC);
                     }
                     ?>
                 </div>
+                
             </div>
+            <?php if (empty($msg)) { ?>
+                        <form method="post" action="../controlador/uploadsala.php" enctype="multipart/form-data">
+                            <input name="my_file" type="file">
+                            <input type="submit" name="submit" value="Upload" />
+                            <input type="hidden" name="idSala" value="<?php echo $idsalachat ?>" />
+                            <input type="hidden" name="idEnvia" value="<?php echo $user->getId() ?>" />
+                    </form>
+                    <?php 
+
+                } else {
+                        echo $msg;
+                    } ?>
             <form  action="../controlador/chats.php" method="post" onsubmit="envioFormulario(this, 'cuerpo-chatComunidad', false);
                     $(this).find('textarea').val('');
                     return false;">
@@ -259,6 +272,7 @@ $datosSala = mysqli_fetch_array($datosSala, MYSQLI_ASSOC);
                 <a href="#1" class="btn btn-sm btn-defauld btn-chat" onclick="$(this).parent().submit();"><i class="fa fa-paper-plane"></i></a>
             </form>
         </div>
+
     </div>
 </div>
 

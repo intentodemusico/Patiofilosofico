@@ -15,5 +15,5 @@
 
 <script type="text/javascript">
     alert("Categoría eliminada correctamente");
-    window.location.href='blog.php';
+    window.location.href='categorias.php?idusuario='$_GET['idusuario'];
 </script>
