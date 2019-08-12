@@ -11,7 +11,8 @@ require_once '../controlador/conBD.php';
  *
  * @author desarrolloJuan
  */
-class Noticia {
+class Noticia
+{
 
     //put your code here
     var $idnoticia;
@@ -26,15 +27,16 @@ class Noticia {
     var $estado; //ACTIVA, INACTIVA, DESTACADA
     var $fecha_modifico;
 
-    function __construct($idnoticia) {
+    function __construct($idnoticia)
+    {
         $conn = $conn = conBD::conectar();
         $sql = "SELECT `noticia`.`idnoticia`,`noticia`.`titulo`,`noticia`.`subtitulo`,`noticia`.`contenido`,`noticia`.`imagen`,`noticia`.`video`,`noticia`.`fecha`,`noticia`.`idusuario`,`noticia`.`enlace`,`noticia`.`estado`,`noticia`.`fecha_modifico` FROM `dbfiloen`.`noticia` where idnoticia = '" . $idnoticia . "'";
-//        if ($_SESSION["conexionBD"]) {
-//            $conn = $_SESSION["conexionBD"];
-//        } else {
-//            $bd = new conBD();
-//            $conn = conBD::conectar();
-//        }
+        //        if ($_SESSION["conexionBD"]) {
+        //            $conn = $_SESSION["conexionBD"];
+        //        } else {
+        //            $bd = new conBD();
+        //            $conn = conBD::conectar();
+        //        }
         $respBD = mysqli_query($conn, $sql);
         if ($respBD) {
             while ($fila = mysql_fetch_row($respBD)) {
@@ -47,7 +49,8 @@ class Noticia {
         }
     }
 
-    function setNoticiaArray($fila) {
+    function setNoticiaArray($fila)
+    {
         $this->setIdnoticia($fila[0]);
         $this->setTitulo($fila[1]);
         $this->setSubtitulo($fila[2]);
@@ -61,136 +64,179 @@ class Noticia {
         $this->setFecha_modifico($fila[10]);
     }
 
-    function getIdnoticia() {
+    function getIdnoticia()
+    {
         return $this->idnoticia;
     }
 
-    function getTitulo() {
+    function getTitulo()
+    {
         return $this->titulo;
     }
 
-    function getSubtitulo() {
+    function getSubtitulo()
+    {
         return $this->subtitulo;
     }
 
-    function getContenido() {
+    function getContenido()
+    {
         return $this->contenido;
     }
 
-    function getImagen() {
+    function getImagen()
+    {
         return $this->imagen;
     }
 
-    function getVideo() {
+    function getVideo()
+    {
         return $this->video;
     }
 
-    function getFecha() {
+    function getFecha()
+    {
         return $this->fecha;
     }
 
-    function getIdusuario() {
+    function getIdusuario()
+    {
         return $this->idusuario;
     }
 
-    function getEnlace() {
+    function getEnlace()
+    {
         return $this->enlace;
     }
 
-    function getEstado() {
+    function getEstado()
+    {
         return $this->estado;
     }
 
-    function getFecha_modifico() {
+    function getFecha_modifico()
+    {
         return $this->fecha_modifico;
     }
 
-    function setIdnoticia($idnoticia) {
+    function setIdnoticia($idnoticia)
+    {
         $this->idnoticia = $idnoticia;
     }
 
-    function setTitulo($titulo) {
+    function setTitulo($titulo)
+    {
         $this->titulo = $titulo;
     }
 
-    function setSubtitulo($subtitulo) {
+    function setSubtitulo($subtitulo)
+    {
         $this->subtitulo = $subtitulo;
     }
 
-    function setContenido($contenido) {
+    function setContenido($contenido)
+    {
         $this->contenido = $contenido;
     }
 
-    function setImagen($imagen) {
+    function setImagen($imagen)
+    {
         $this->imagen = $imagen;
     }
 
-    function setVideo($video) {
+    function setVideo($video)
+    {
         $this->video = $video;
     }
 
-    function setFecha($fecha) {
+    function setFecha($fecha)
+    {
         $this->fecha = $fecha;
     }
 
-    function setIdusuario($idusuario) {
+    function setIdusuario($idusuario)
+    {
         $this->idusuario = $idusuario;
     }
 
-    function setEnlace($enlace) {
+    function setEnlace($enlace)
+    {
         $this->enlace = $enlace;
     }
 
-    function setEstado($estado) {
+    function setEstado($estado)
+    {
         $this->estado = $estado;
     }
 
-    function setFecha_modifico($fecha_modifico) {
+    function setFecha_modifico($fecha_modifico)
+    {
         $this->fecha_modifico = $fecha_modifico;
     }
 
-    public function registroNuevaNoticia($titulo, $subtitulo, $contenido, $imagen, $tipoMultimedia, $fecha, $idusuario, $enlace, $estado, 
-            $fecha_modifico, $conn) {
+    public function registroNuevaNoticia(
+        $titulo,
+        $subtitulo,
+        $contenido,
+        $imagen,
+        $tipoMultimedia,
+        $fecha,
+        $idusuario,
+        $enlace,
+        $estado,
+        $fecha_modifico,
+        $conn
+    ) {
         $hoy = new DateTime('now');
         $hoy = $hoy->format("Y-m-d H:i:s");
-//        $conn = conBD::conectar();
+        //        $conn = conBD::conectar();
         $id = 0;
         $contenido = str_replace("\\", "\\\\'", $contenido);
         $contenido = str_replace("'", "\'", $contenido);
         $sentenciaSQL = "INSERT INTO `noticia` (`titulo`,`subtitulo`,`contenido`,`imagen`,`tipo_multimedia`,`fecha`,`idusuario`,`enlace`,`estado`,`fecha_modifico`)
 VALUES('" . $titulo . "','" . $subtitulo . "','" . $contenido . "','" . $imagen . "','" . $tipoMultimedia . "','" . $fecha . "',
 '" . $idusuario . "','" . $enlace . "','" . $estado . "','" . $fecha_modifico . "'); ";
-//        echo 'La sentencia es : '. $sentenciaSQL;
+        //        echo 'La sentencia es : '. $sentenciaSQL;
         mysqli_query($conn, $sentenciaSQL);
         $id = mysqli_insert_id($conn);
         $existoInsert = mysqli_affected_rows($conn);
 
         if ($existoInsert > 0) {
-            ?><script>var noty = new NotificationFx({
-                    message: '<h5>Noticia registrada</h5><p>la noticia se registro existosamente. </p>',
-                    layout: 'growl', effect: 'slide', type: 'notice' // notice, warning or error
-                });
-                noty.show();
-                $('#modalNuevaNoticia').modal('toggle');
-                cargarPagina('noticias_Completas.php', 'contenedorPrincipal', true)
-            </script> <?php
-//            $nuevoID = mysqli_
-            return $id;
-        } else {
-            ?><script>var noty = new NotificationFx({message: '<h5>Operación fallida</h5><p>No fue posible registrar la noticia, verifique los datos y archivos e inténtelo de nuevo</p>',
-                    layout: 'growl', effect: 'slide', type: 'warning'});
-                noty.show();
-            </script> <?php
-            return $id;
-        }
-    }
-
-    public function actualizarNoticiaMultimedia($id, $imagen, $tipoMultimedia, $conn, $idUser) {
-
-//        $conn = conBD::conectar();
-        $hoy = new DateTime('now');
-        $hoy = $hoy->format("Y-m-d H:i:s");
-        $sentenciaSQL = "UPDATE `noticia`
+            ?><script>
+    var noty = new NotificationFx({
+        message: '<h5>Noticia registrada</h5><p>la noticia se registro existosamente. </p>',
+        layout: 'growl',
+        effect: 'slide',
+        type: 'notice' // notice, warning or error
+    });
+    noty.show();
+    $('#modalNuevaNoticia').modal('toggle');
+    cargarPagina('noticias_Completas.php', 'contenedorPrincipal', true);
+    setTimeout("location.reload(true);", 2000);
+</script> <?php
+                        $page = $_SERVER['PHP_SELF'];
+                        $sec = "2";
+                        header("Refresh: $sec; url=$page");
+                        return $id;
+                    } else {
+                        ?><script>
+    var noty = new NotificationFx({
+        message: '<h5>Operación fallida</h5><p>No fue posible registrar la noticia, verifique los datos y archivos e inténtelo de nuevo</p>',
+        layout: 'growl',
+        effect: 'slide',
+        type: 'warning'
+    });
+    noty.show();
+</script> <?php
+                        return $id;
+                    }
+                }
+                public function actualizarNoticiaMultimedia($id, $imagen, $tipoMultimedia, $conn, $idUser)
+                {
+                    //        $conn = conBD::conectar();
+                    $hoy = new DateTime('now');
+                    $hoy = $hoy->format("Y-m-d H:i:s");
+                    $sentenciaSQL = "UPDATE `noticia`
 SET
 `imagen` = '" . $imagen . "',
 `tipo_multimedia` = '" . $tipoMultimedia . "',
@@ -198,34 +244,36 @@ SET
 `fecha_modifico` = '" . $hoy . "' 
 WHERE `idnoticia` = '" . $id . "';
  ";
-        mysqli_query($conn, $sentenciaSQL);
-//        $id = mysqli_insert_id($conn);
-        $exitoUpdate = mysqli_affected_rows($conn);
-//        mysqli_close($conn);
-        return $exitoUpdate;
-    }
+                    mysqli_query($conn, $sentenciaSQL);
+                    //        $id = mysqli_insert_id($conn);
+                    $exitoUpdate = mysqli_affected_rows($conn);
+                    //        mysqli_close($conn);
+                    return $exitoUpdate;
+                }
 
-    public function actualizarNoticiaEstado($id, $estado, $conn, $idUser) {
+                public function actualizarNoticiaEstado($id, $estado, $conn, $idUser)
+                {
 
-//        $conn = conBD::conectar();
-        $hoy = getdate();
-        $hoy = date("Y-m-d H:i:s", $hoy);
-        $sentenciaSQL = "UPDATE `noticia`
+                    //        $conn = conBD::conectar();
+                    $hoy = getdate();
+                    $hoy = date("Y-m-d H:i:s", $hoy);
+                    $sentenciaSQL = "UPDATE `noticia`
 SET
 `estado` = '" . $estado . "',
 `idusuario` = '" . $idUser . "',
 `fecha_modifico` = '" . $hoy . "' 
 WHERE `idnoticia` = '" . $id . "';
  ";
-        mysqli_query($conn, $sentenciaSQL);
-//        $id = mysqli_insert_id($conn);
-        $exitoUpdate = mysqli_affected_rows($conn);
-        return $exitoUpdate;
-    }
+                    mysqli_query($conn, $sentenciaSQL);
+                    //        $id = mysqli_insert_id($conn);
+                    $exitoUpdate = mysqli_affected_rows($conn);
+                    return $exitoUpdate;
+                }
 
-    public function obtenerNoticasActuales() {
-        $conn = conBD::conectar();
-        $sql = "SELECT `noticia`.`idnoticia`,
+                public function obtenerNoticasActuales()
+                {
+                    $conn = conBD::conectar();
+                    $sql = "SELECT `noticia`.`idnoticia`,
     `noticia`.`titulo`,
     `noticia`.`subtitulo`,
     `noticia`.`contenido`,
@@ -237,16 +285,16 @@ WHERE `idnoticia` = '" . $id . "';
     `noticia`.`estado`,
     `noticia`.`fecha_modifico`
 FROM `noticia` WHERE estado <> 'INACTIVO'";
-        return mysqli_query($conn, $sql);
-    }
-    
-    static function eliminarNoticia($idNoticia) {
-        $sql = "DELETE FROM `dbfiloen`.`noticia` WHERE idnoticia ='" . $idNoticia . "';";
-        $conn = conBD::conectar();
-//        echo 'eliminarPublicacion ' . $sql;
-        $result = mysqli_query($conn, $sql);
-        mysqli_close($conn);
-        return $result;
-    }
+                    return mysqli_query($conn, $sql);
+                }
 
-}
+                static function eliminarNoticia($idNoticia)
+                {
+                    $sql = "DELETE FROM noticia WHERE idnoticia ='" . $idNoticia . "';";
+                    $conn = conBD::conectar();
+                    //        echo 'eliminarPublicacion ' . $sql;
+                    $result = mysqli_query($conn, $sql);
+                    mysqli_close($conn);
+                    return $result;
+                }
+            }

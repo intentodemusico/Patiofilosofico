@@ -68,9 +68,7 @@ if ($_SESSION['usuario']) {
                 </video>
             </div>
             <div class="form-group">
-                <!--<div class="form-group">-->
                 <input type="submit" value="Publicar" class="btn btn-primary">
-                <!--</div>-->
             </div>
         </div>
     </div>
