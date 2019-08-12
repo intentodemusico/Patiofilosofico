@@ -62,7 +62,7 @@ if (isset($s['usuario']))
 
             ?>
             <br>
-            <a href="agregarnoticia.php">Ir al Formulario</a> <a href="blog.php"> Ir a Mi Blog</a>
+            <a href="agregarnoticia.php">Ir al Formulario</a> <a href="blog.php?idusuario=<?php echo $user->getId()?>" > Ir a Mi Blog</a>
         </div>
     </div>
 

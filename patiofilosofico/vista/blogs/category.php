@@ -18,7 +18,7 @@ if (isset($s['usuario']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Categorías</title>
+    <title>Fías</title>
     <link rel="shortcut icon" type="image/x-icon" href="imagenes/logor.jpg">
     <link rel="stylesheet" href="css/noticiacompletas.css">
 
@@ -32,7 +32,7 @@ if (isset($s['usuario']))
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 </head>
-
+<?php $idUserBlog = $_GET["idusuario"]; ?>
 <style>
     
      .nombre{
@@ -88,7 +88,7 @@ if (isset($s['usuario']))
      <?php
     $connect = conBD::conectar();
     
-    $querys = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario = ".$user->getId());
+    $querys = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario = ".$_GET["idusuario"]);
     while ($rowt= mysqli_fetch_array($querys))
     {
     ?>
@@ -105,22 +105,22 @@ if (isset($s['usuario']))
 </header>
 
     <?php
-           $query = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario= ".$user->getId());
+           $query = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario= ".$_GET["idusuario"]);
                while($row= mysqli_fetch_array($query))
                {
     ?>
-
-                    <div id="container">
-                        <nav class="navegacion">
-                            <ul class="menus">
-                               <li> <a href="../index.php"><img src="Imagenes/ini.png">Inicio</a></li>
-                               <li> <a href="blog.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/lb.png">Blog</a></li>
-                               <li> <a href="agregarnoticia.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/nuv.png">Nueva Entrada</a></li>
-                               <li> <a href="categorias.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/cat.png">Agregar Categoría</a></li>
-
-                            </ul>
-                        </nav>
-                    </div>
+<div id="container">
+    <nav class="navegacion">
+        <ul class="menus">
+            <li> <a href="../index.php"><img src="Imagenes/ini.png">Inicio</a></li>
+            <li> <a href="blog.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/lb.png">Blog</a></li>
+            <?php if ($user->getId()== $idUserBlog) { //el logeado es el dueño del post -> puede gestionar el blog ?> 
+                <li> <a href="agregarnoticia.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/nuv.png">Nueva Entrada</a></li>
+                <li> <a href="categorias.php?idusuario=<?php echo $row['idusuario'];?>"><img src="Imagenes/cat.png">Agregar Categoría</a></li>
+            <?php }?>
+        </ul>
+    </nav>
+</div>
 
          <?php
     }
@@ -139,7 +139,7 @@ if (isset($s['usuario']))
     <div class="col-xs-12 col-sm-9 col-md-9 >
          
         <?php
-          $nombrecat = mysqli_query($connect, "SELECT * FROM categorias WHERE idcategorias = '".$_GET['id']."' AND idusuario= ".$user->getId()." ");
+          $nombrecat = mysqli_query($connect, "SELECT * FROM categorias WHERE idcategorias = '".$_GET['id']."' AND idusuario= ".$_GET["idusuario"]." ");
           while($roww= mysqli_fetch_array($nombrecat))
             {
         ?>  
@@ -152,9 +152,11 @@ if (isset($s['usuario']))
         ?>
         
          <?php
+         print_r($_GET);  // for all GET variables
+         print_r($_POST); // for all POST variables
         if(isset($_GET['id'])){
         
-            $query = mysqli_query($connect, "SELECT * FROM blog WHERE selecategoria = '".$_GET['id']."' AND idusuario= ".$user->getId());
+            $query = mysqli_query($connect, "SELECT * FROM blog WHERE selecategoria = '".$_GET['id']."' AND idusuario= ".$_GET["idusuario"]);
             while($row= mysqli_fetch_array($query))
             {
              
