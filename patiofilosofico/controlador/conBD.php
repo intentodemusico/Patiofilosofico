@@ -7,9 +7,9 @@ class conBD
 
     static public function conectar()
     {
-        $host = "localhost:3306";
+        $host = "localhost";
         $dbuser = "root";
-        $dbpwd = "buf123";
+        $dbpwd = "123buf";
         $db = "patiofilosofico";
 
         $connect = mysqli_connect($host, $dbuser, $dbpwd, $db);

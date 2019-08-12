@@ -61,10 +61,11 @@ if (isset($_SESSION["usuario"])) {
                         if ($MISgrupos->num_rows == 0) {
                             ?><blockquote class="blockquote col-10 offset-1">
                                 <i class="text-muted">No estas participando aun en ningun grupo , unete y participa en los grupos disponibles</i>
-                            </blockquote> <?php
+                            </blockquote> 
+                        <?php
                         }
                         while ($fila = mysqli_fetch_array($MISgrupos, MYSQLI_ASSOC)) {
-                            ?>
+                        ?>
                         <div class="cont-group mb-3 p-3" id="comunidad<?php echo $fila["idsala_chat"]; ?>">  <!-- Acá se debe corregir para que solo el dueño de la comunidad pueda eliminarla-->
                                 <button type="button" class="close" aria-label="Close"  title="Eliminar Comunidad" onclick="eliminarComunidad(this,'<?php echo $fila["idsala_chat"]; ?>');">  
                                                 <span aria-hidden="true">&times;</span>

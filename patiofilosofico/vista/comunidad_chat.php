@@ -251,11 +251,11 @@ $datosSala = mysqli_fetch_array($datosSala, MYSQLI_ASSOC);
                 
             </div>
             <?php if (empty($msg)) { ?>
-                        <form method="post" action="../controlador/uploadsala.php" enctype="multipart/form-data">
-                            <input name="my_file" type="file">
-                            <input type="submit" name="submit" value="Upload"/>
+                    <form method="post" action="../controlador/uploadsala.php" enctype="multipart/form-data">
+                            <input name="my_file" type="file">                            
                             <input type="hidden" name="idSala" value="<?php echo $idsalachat ?>" />
                             <input type="hidden" name="idEnvia" value="<?php echo $user->getId() ?>" />
+                            <input type="submit" name="submit" value="Subir Archivo" />
                     </form>
                     <?php 
 

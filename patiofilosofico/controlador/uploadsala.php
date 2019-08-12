@@ -3,6 +3,7 @@
 include '../modelo/Chats.php';
 include '../modelo/Usuario.php';
 include '../modelo/Mensajeria.php';
+
 if (($_FILES['my_file']['name']!="")){
 // Where the file is going to be stored
  $target_dir = "../upload/";
@@ -28,6 +29,6 @@ if ($salaChat->enviarMensajeSalaChat($_POST['idSala'],$_POST['idEnvia'], $a) > 0
     $fecha = new DateTime(conBD::getFechaActual());
     $fecha = $fecha->format("d M | H:i");
 }
-header("Location: ../vista/index.php");
-exit();    
+
+    
 ?>

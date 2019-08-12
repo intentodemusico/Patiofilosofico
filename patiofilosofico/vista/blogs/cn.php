@@ -7,8 +7,8 @@
 
 
 	$host= "localhost";
-	$dbuser = "laravel";
-	$dbpwd = "laravel";
+	$dbuser = "root";
+	$dbpwd = "123buf";
 	$db = "patiofilosofico";
 
 //    $host = "mysql7001.site4now.net";

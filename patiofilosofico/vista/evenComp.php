@@ -50,6 +50,12 @@ include '../modelo/evento.php';
                 right: 60%;
             }
             
+            .row .btn a{
+                position: relative;
+                margin: 0px 0px 30px 0px;
+                left: 500px;
+            }
+            
         </style>    
         
     </head>
@@ -110,8 +116,9 @@ include '../modelo/evento.php';
                         </div>
                 </div>
             </div>
-           
-            
+            <div class="btn">
+                <a href="<?php echo $evento->getWeb(); ?>" target="_blank" class="btn btn-primary">Ir a la web del Evento</a>
+            </div>
         </div>
      
     <div class="row info-evento">

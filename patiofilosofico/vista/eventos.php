@@ -15,6 +15,13 @@ if (isset($_SESSION['usuario']))
 <link href="css/evento.css" rel="stylesheet" type="text/css"/>
 
 <header>
+    
+    <style>
+        .btn a{
+            position: absolute;
+            z-index: 999999;
+        }
+    </style>
 
 </header>                            
 
@@ -61,12 +68,15 @@ if (isset($_SESSION['usuario']))
                                 <input type="hidden" name="oper" value="eliminarEvento">
                             </form>
                         <?php } ?>
-                                <h5 class="titulo-evento text-uppercase"><?php echo $evento->getNombre(); ?></h5><div class="col-12 img-evento" style="background-image: url(<?php echo $evento->getImagen(); ?>)">
+                                <h5 class="titulo-evento text-uppercase"><?php echo $evento->getNombre(); ?></h5>
+                                <div class="col-12 img-evento" style="background-image: url(<?php echo $evento->getImagen(); ?>)">
                                     <p  class="descripcion-evento"><?php echo $evento->getInformacion(); ?>
                                     <?php
                                     if( $evento->getWeb() != ""){
                                         ?><br>
+                                    <div class="btn">
                                         <a href="#2" onclick="cargarPagina('evenComp.php?id=<?php echo $evento->getId(); ?>', 'contenedorPrincipal', true)" class="btn btn-primary">Ver mas</a>
+                                    </div>
                                     <?php
                                     }
                                     ?>

@@ -62,7 +62,18 @@ if (isset($s['usuario']))
 
             ?>
             <br>
-            <a href="agregarnoticia.php">Ir al Formulario</a> <a href="blog.php?idusuario=<?php echo $user->getId()?>" > Ir a Mi Blog</a>
+             <?php
+                    $query = mysqli_query($connect, "SELECT * FROM usuario WHERE idusuario= ".$user->getId());
+                    while($row= mysqli_fetch_array($query))
+                    {
+               ?>
+            <br>
+            <a href="agregarnoticia.php?idusuario=<?php echo $row['idusuario'];?>">Ir al Formulario</a> 
+            <a href="blog.php?idusuario=<?php echo $row['idusuario'];?>"> Ir a Mi Blog</a>
+            
+            <?php
+                    }
+            ?>
         </div>
     </div>
 

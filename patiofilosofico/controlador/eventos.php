@@ -35,6 +35,15 @@ if (isset($p['oper'])) {
                 $actividad++;
             }
             ?>
+    
+    <style>
+        .btn a{
+            position: absolute;
+            z-index: 999999;
+        }
+    </style>
+
+
             <script>
                 cargarPagina('crearEvento.php', 'contNuevoevento', true);
 //                document.getElementById("formNuevoEvento").reset();
@@ -57,8 +66,12 @@ if (isset($p['oper'])) {
                 <div class="col-md-6 col-sm-10 p-3 cuerpo-evento">
                     <div class="eve-backg">
 
-                        <h5 class="titulo-evento text-uppercase"><?php echo $evento->getNombre(); ?></h5><div class="col-12 img-evento" style="background-image: url(<?php echo $evento->getImagen(); ?>)">
+                        <h5 class="titulo-evento text-uppercase"><?php echo $evento->getNombre(); ?></h5>
+                        <div class="col-12 img-evento" style="background-image: url(<?php echo $evento->getImagen(); ?>)">
                             <p  class="descripcion-evento"><?php echo $evento->getInformacion(); ?></p>
+                            <div class="btn">
+                                <a href="#2" onclick="cargarPagina('evenComp.php?id=<?php echo $evento->getId(); ?>', 'contenedorPrincipal', true)" class="btn btn-primary">Ver mas</a>
+                            </div>
                         </div>
                         <div class="row info-evento">
                             <h6 class="col-12 text-center"><b>Lugar: </b><?php echo $evento->getLugar(); ?> 
